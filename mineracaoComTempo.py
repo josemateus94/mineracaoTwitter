@@ -11,7 +11,7 @@ import unicodedata
 import codecs
 import unicodedata
 import json
-import emoji
+#import emoji
 cont = 0
 kk = []
 
@@ -55,10 +55,13 @@ try:
         
         #teststring = unicode(texto, 'utf-8')
         #teststring = teststring.encode('unicode_escape')        
+        print(str(cont)+"-----")
+        print(tweet)
         print("-----")
-        print(tweet['text'])
         print("-----")
-        arquivo.write(texto+"\n----------------------------------")
+        arquivo.write("----------------------------------")
+        arquivo.write("\n"+str(cont)+"-->"+texto+"\n")
+        arquivo.write("----------------------------------")
         kk = []
         #arquivo.write(nome+"-"+aparelho+"-"+localizacao+"-"+data_tw+"-"+texto+"\n")
         #cursor.execute ("INSERT INTO twitter (nome, aparelho, localizacao, data_tw, texto) VALUES ('%s','%s','%s','%s','%s')"% (nome, aparelho,localizacao, data_tw, texto))
@@ -73,3 +76,4 @@ except TwitterSearchException as e:
 	#print( ( tweet['user']['location'] ) ) - cidade
 	#print( ( tweet['created_at'] ) ) - Data
 	#print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
+    #print(tweet['user']['description'])
