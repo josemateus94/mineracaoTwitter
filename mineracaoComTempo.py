@@ -33,41 +33,32 @@ try:
         queries, tweets_seen = current_ts_instance.get_statistics()
         if queries > 0 and (queries % 5) == 0: # trigger delay every 5th query
             time.sleep(5) # sleep for 60 seconds
-
+                
     for tweet in ts.search_tweets_iterable(tso, callback=my_callback_closure):
-        cont += 1 
+         
         teste = tweet['source'].split(">")
         teste = teste[1].split("<")
         #cursor = conn.cursor()
-        nome = tweet['user']['screen_name']
-        aparelho = teste[0]
+        nome = tweet['user']['screen_name']        
 
-        localizacao ="ll" #tweet['user']['location'].encode('utf-8')
-        #localizacao = localizacao.encode('ascii', 'ignore').decode('ascii')
-        #localizacao = localizacao.decode("utf-8")
-        localizacao = "ll"#(emoji.demojize ( localizacao ))
+        twid = tweet['id']
+        nome = tweet['user']['screen_name'].encode('utf-8')
+        localicacao = tweet['user']['location'].encode('utf-8')
+        aparelho = tweet['source'].encode('utf-8')
+        data = tweet['created_at'].encode('utf-8')
+        texto = tweet['text'].encode('utf-8')        
 
-        data_tw ="ll" #tweet['created_at'].encode('utf-8')
-        #data_tw = (emoji.demojize ( data_tw ))
-
-        texto = tweet['text'].encode('utf-8')
-        kk.append(texto)
-        
-        #teststring = unicode(texto, 'utf-8')
-        #teststring = teststring.encode('unicode_escape')        
-        print(str(cont)+"-----")
-        print(tweet)
-        print("-----")
-        print("-----")
-        arquivo.write("----------------------------------")
-        arquivo.write("\n"+str(cont)+"-->"+texto+"\n")
-        arquivo.write("----------------------------------")
-        kk = []
-        #arquivo.write(nome+"-"+aparelho+"-"+localizacao+"-"+data_tw+"-"+texto+"\n")
-        #cursor.execute ("INSERT INTO twitter (nome, aparelho, localizacao, data_tw, texto) VALUES ('%s','%s','%s','%s','%s')"% (nome, aparelho,localizacao, data_tw, texto))
-        #conn.commit()
-        print( ( cont ) )
-
+        arquivo.write(str(cont))
+        arquivo.write('|||' + str(twid))
+        arquivo.write('|||' + str(nome))
+        arquivo.write('|||' + str(localicacao))
+        arquivo.write('|||' + str(aparelho))
+        arquivo.write('|||' + str(data))
+        arquivo.write('|||' + str(texto))        
+        arquivo.write('\n-------------------------\n')
+        print(cont)
+        print(data)
+        cont +=1
 
 except TwitterSearchException as e:
     print(e)
