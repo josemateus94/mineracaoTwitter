@@ -15,11 +15,12 @@ import json
 cont = 0
 kk = []
 
-#conn =  mysql.connector.connect(user='root', password='',
-                        #database='mineracao',host='localhost', charset='utf8')
+candidato = 'anastasia'                        
+dia = time.strftime('%d %b %y')                        
+horas = time.strftime('%H:%M:%S')                        
 try:
     tso = TwitterSearchOrder()
-    tso.set_keywords(['bolsonaro'])
+    tso.set_keywords([candidato])
     tso.set_language('pt')
 
     ts = TwitterSearch(
@@ -28,18 +29,13 @@ try:
         access_token = '968521944944529408-oI5NcJVaZellwrsPjhsQkQPDeAZJzKf',
         access_token_secret = 'hc7bTI65fG97smD3ZEB6iCjLrBzHBxn2Sp6TIaX8fZSJZ'
     )
-    arquivo = open('arquivo.txt','w')
+    arquivo = open('arquivos/'+candidato+' '+ dia +' '+ horas +'.txt','w')
     def my_callback_closure(current_ts_instance): # accepts ONE argument: an instance of TwitterSearch
         queries, tweets_seen = current_ts_instance.get_statistics()
         if queries > 0 and (queries % 5) == 0: # trigger delay every 5th query
-            time.sleep(5) # sleep for 60 seconds
+            time.sleep(60) # sleep for 60 seconds
                 
-    for tweet in ts.search_tweets_iterable(tso, callback=my_callback_closure):
-         
-        teste = tweet['source'].split(">")
-        teste = teste[1].split("<")
-        #cursor = conn.cursor()
-        nome = tweet['user']['screen_name']        
+    for tweet in ts.search_tweets_iterable(tso, callback=my_callback_closure):              
 
         twid = tweet['id']
         nome = tweet['user']['screen_name'].encode('utf-8')
@@ -59,6 +55,7 @@ try:
         print(cont)
         print(data)
         cont +=1
+
 
 except TwitterSearchException as e:
     print(e)
