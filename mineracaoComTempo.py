@@ -15,7 +15,7 @@ import json
 cont = 0
 kk = []
 
-candidato = 'anastasia'                        
+candidato = 'pimentel'                        
 dia = time.strftime('%d %b %y')                        
 horas = time.strftime('%H:%M:%S')                        
 try:
