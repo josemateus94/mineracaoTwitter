@@ -15,7 +15,7 @@ import json
 cont = 0
 kk = []
 
-candidato = 'pimentel'                        
+candidato = 'anastasia'                        
 dia = time.strftime('%d %b %y')                        
 horas = time.strftime('%H:%M:%S')                        
 try:
@@ -37,7 +37,7 @@ try:
                 
     for tweet in ts.search_tweets_iterable(tso, callback=my_callback_closure):              
 
-        twid = tweet['id']
+        twid = tweet['user']['id']
         nome = tweet['user']['screen_name'].encode('utf-8')
         localicacao = tweet['user']['location'].encode('utf-8')
         aparelho = tweet['source'].encode('utf-8')

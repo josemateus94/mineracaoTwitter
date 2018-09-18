@@ -1,16 +1,20 @@
 <?php
 
 require_once('RemoveEmoji.php');
-require_once('MineracaoComPhp.php');
 require_once('Candidato.php');
 
 class Fatoracao{
-    private $nomeCandidato = 'anastasia';
+    private $nomeCandidato;
+
+    public function __construct($nomeCancidato){
+        $this->nomeCancidato = $nomeCancidato;
+    }
 
     function mostra($dados){
         $infos = array();
         $candidato = new Candidato();
-        $fp = fopen($nomeCandidato.".txt", "w");
+        //$fp = fopen($this->nomeCandidato.".txt", "w");
+        
         foreach ($dados as $dado) {
             $aux = explode('|||', $dado);
             if (isset($aux[6])) {
@@ -31,30 +35,34 @@ class Fatoracao{
                 'post'         => isset($aux[6]) ? $aux[6] : '',
             );            
             array_push($infos, $info);
-            $candidato->inserePost($info,$nomeCandidato);
-            $this->salvarTxt($info['post'], $fp);
+            $candidato->inserePost($info,$this->nomeCandidato);            
             $info = array();
         }
-        $this->salvar($infos);
+        $this->mostraFormatado($infos);
         fclose($fp);
     }
-    private function salvarTxt($post, $fp){        
-        $escreve = fwrite($fp, ( $post."\n"));
+    public function salvarTxt($post, $nomeTxt){  
+        $fp = fopen("ifeel/$nomeTxt", "w"); 
+        foreach ($post as $value) {
+            $escreve = fwrite($fp, ($value['post']."\n"));
+        }
+        fclose($fp);  
+        echo'ok';      
     }
     
-    function salvar($infos){
-        
+    function mostraFormatado($infos){        
         echo"<pre>";
             var_dump($infos);
         echo"</pre>";
     }
     
     function ler(){
-        $arquivo = "arquivo.txt";
+        set_time_limit(0);
+        $arquivo = "arquivos/pimentel 09 Sep 18 21:32:31.txt";
         $teste = array();
         $fp = fopen($arquivo, "r");
         $valor = null;
-        while (!feof ($fp)) {
+        while (!feof ($fp)) {            
             $valor = $valor.''. fgets($fp, 4096);       
             //array_push($teste,  $valor);
         }    
@@ -64,9 +72,13 @@ class Fatoracao{
         $this->mostra($aux);
     }
 }
-$ft = new Fatoracao();
-$ft->ler();
-
+$nomeCandidato = 'pimentel';
+$ft = new Fatoracao($nomeCandidato);
+$candidato = new Candidato();
+$date = date('d-m-Y_H:i:s');
+$nomeTxt = ($nomeCandidato.'_'.$date);
+//$ft->ler(); // ler o txt do python e salva no mysql 
+$ft->salvarTxt($candidato->buscar($nomeCandidato), $nomeTxt); //prepara o arquivo para ifeel
 
 ?>
 
