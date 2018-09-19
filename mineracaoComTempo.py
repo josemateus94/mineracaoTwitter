@@ -29,7 +29,7 @@ try:
         access_token = '968521944944529408-oI5NcJVaZellwrsPjhsQkQPDeAZJzKf',
         access_token_secret = 'hc7bTI65fG97smD3ZEB6iCjLrBzHBxn2Sp6TIaX8fZSJZ'
     )
-    arquivo = open('arquivos/'+candidato+' '+ dia +' '+ horas +'.txt','w')
+    arquivo = open('../arquivos/'+candidato+' '+ dia +' '+ horas +'.txt','w')
     def my_callback_closure(current_ts_instance): # accepts ONE argument: an instance of TwitterSearch
         queries, tweets_seen = current_ts_instance.get_statistics()
         if queries > 0 and (queries % 5) == 0: # trigger delay every 5th query
@@ -59,9 +59,3 @@ try:
 
 except TwitterSearchException as e:
     print(e)
-    
-	#print( ( tweet['source'] ) ) - aparelho utilizado
-	#print( ( tweet['user']['location'] ) ) - cidade
-	#print( ( tweet['created_at'] ) ) - Data
-	#print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
-    #print(tweet['user']['description'])

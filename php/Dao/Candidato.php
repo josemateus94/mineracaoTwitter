@@ -36,7 +36,7 @@ class Candidato{
     }
     public function buscar($nomeCandidato){
         try{
-            $pdt = $this->pdo->prepare("SELECT post FROM $nomeCandidato WHERE  id BETWEEN 1801 and 2701;");
+            $pdt = $this->pdo->prepare("SELECT post FROM $nomeCandidato");
             $pdt->execute();                                        
             return $pdt->fetchAll();            
         }catch(PDOException $exc){
