@@ -1,5 +1,6 @@
 <?php  
 error_reporting(E_ALL ^ E_NOTICE);
+require_once('../Message/MensagemAlerta.php');
 ?>
 <html>
 <head>
@@ -10,14 +11,12 @@ error_reporting(E_ALL ^ E_NOTICE);
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="Index.php" class="navbar-brand">Mineração</a>
-            </div>
+        <div class="container">            
             <div>
                 <ul class="nav navbar-nav">
                     <li><a href="Ifeel.php">Prepara arquivo ifeel</a></li>
-                    <li><a href="SalvaMysql.php">Ler o txt do python e salva no mysql</a></li>                    
+                    <li><a href="SalvaMysql.php">Ler o txt do python e salva no mysql</a></li>
+                    <li><a href="Exel.php">Ler o exel e salva no mysql</a></li>                    
                 </ul>
             </div>
         </div>
@@ -25,3 +24,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
     <div class="container">
     <div class="principal">
+<?php
+MensagemAlerta::mostraAlerta("success");
+MensagemAlerta::mostraAlerta("danger");
+?>

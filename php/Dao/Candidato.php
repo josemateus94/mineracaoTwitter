@@ -34,9 +34,11 @@ class Candidato{
             echo "" . ($exc->getMessage());
         }     
     }
-    public function buscar($nomeCandidato){
+    public function buscar($nomeCandidato, $inicioDaBusca){
         try{
-            $pdt = $this->pdo->prepare("SELECT post FROM $nomeCandidato");
+            $pdt = $this->pdo->prepare("SELECT post FROM $nomeCandidato 
+                                        WHERE id >= :inicioDaBusca and post like '%$nomeCandidato%'");
+            $pdt->bindParam(':inicioDaBusca', $inicioDaBusca, PDO::PARAM_STR);
             $pdt->execute();                                        
             return $pdt->fetchAll();            
         }catch(PDOException $exc){

@@ -1,6 +1,6 @@
 <?php require_once("Cabecalho.php");  ?>
 <div class='controller'>
-    <h1>Prepara arquivo ifeel</h1>
+    <h1>Ler o exel e salva no mysql</h1>
     <form method='POST' action='../Routes/Routes.php'>
         <table class="table">
             <tr>
@@ -27,7 +27,7 @@
                 </td>
             </tr>                        
         </table>        
-        <input class='hidden' type='text' name='tipo' id='tipo' value='salvarifeel'>
+        <input class='hidden' type='text' name='tipo' id='tipo' value='exelMysal'>
         </br>
         <button class='btn bg-primary'>OK</button>
     </form>

@@ -14,10 +14,11 @@ import json
 #import emoji
 cont = 0
 kk = []
-
-candidato = 'anastasia'                        
+# anastasia; pimentel; Adalclever Lopes; Alexandre Flach; Claudiney Dulim; Dirlene Marques
+# João Batista Mares Guia; Jordano Metalúrgico; Romeu Zema
+candidato = 'Romeu Zema'               
 dia = time.strftime('%d %b %y')                        
-horas = time.strftime('%H:%M:%S')                        
+horas = time.strftime('%H:%M:%S')                  
 try:
     tso = TwitterSearchOrder()
     tso.set_keywords([candidato])
@@ -29,7 +30,7 @@ try:
         access_token = '968521944944529408-oI5NcJVaZellwrsPjhsQkQPDeAZJzKf',
         access_token_secret = 'hc7bTI65fG97smD3ZEB6iCjLrBzHBxn2Sp6TIaX8fZSJZ'
     )
-    arquivo = open('../arquivos/'+candidato+' '+ dia +' '+ horas +'.txt','w')
+    arquivo = open('arquivos/'+candidato+' '+ dia +' '+ horas +'.txt','w')
     def my_callback_closure(current_ts_instance): # accepts ONE argument: an instance of TwitterSearch
         queries, tweets_seen = current_ts_instance.get_statistics()
         if queries > 0 and (queries % 5) == 0: # trigger delay every 5th query
