@@ -16,7 +16,7 @@ cont = 0
 kk = []
 # anastasia; pimentel; Adalclever Lopes; Alexandre Flach; Claudiney Dulim; Dirlene Marques
 # João Batista Mares Guia; Jordano Metalúrgico; Romeu Zema
-candidato = 'Romeu Zema'               
+candidato = 'anastasia'               
 dia = time.strftime('%d %b %y')                        
 horas = time.strftime('%H:%M:%S')                  
 try:

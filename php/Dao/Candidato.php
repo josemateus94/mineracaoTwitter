@@ -34,13 +34,35 @@ class Candidato{
             echo "" . ($exc->getMessage());
         }     
     }
-    public function buscar($nomeCandidato, $inicioDaBusca){
+    public function buscar($nomeCandidato, $inicioDaBusca, $fimDaBusca=null){
+        
+        if (is_null($fimDaBusca)) {
+            $fimDaBusca = '';
+        }else{
+            $fimDaBusca = 'and id <='.$fimDaBusca;
+        }
         try{
-            $pdt = $this->pdo->prepare("SELECT post FROM $nomeCandidato 
-                                        WHERE id >= :inicioDaBusca and post like '%$nomeCandidato%'");
+            $pdt = $this->pdo->prepare("SELECT post, id FROM $nomeCandidato 
+                                        WHERE id >= :inicioDaBusca and post like '%$nomeCandidato%' $fimDaBusca");
             $pdt->bindParam(':inicioDaBusca', $inicioDaBusca, PDO::PARAM_STR);
             $pdt->execute();                                        
             return $pdt->fetchAll();            
+        }catch(PDOException $exc){
+            echo "" . ($exc->getMessage());
+        }
+    }
+    //UPDATE `candidatos`.`adalclever_lopes` SET `sentimento`='asas' WHERE `id`='1';
+    public function inserirSentimentos($idCandidato, $nomeCandidato, $sentimento){
+        try{
+            $pdt = $this->pdo->prepare("UPDATE $nomeCandidato SET sentimento = :sentimento
+                                        WHERE id = :idCandidato");
+            $pdt->bindParam(':idCandidato', $idCandidato, PDO::PARAM_STR);
+            $pdt->bindParam(':sentimento', $sentimento, PDO::PARAM_STR);
+            if ($pdt->execute()) {
+                return true;
+            }else{
+                return false;
+            }
         }catch(PDOException $exc){
             echo "" . ($exc->getMessage());
         }

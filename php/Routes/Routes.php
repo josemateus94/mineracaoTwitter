@@ -13,7 +13,7 @@ switch ($_POST['tipo']) {
         break;
     case 'exelMysal':
         require_once('../Controller/ExcelController.php');
-        ExcelController::salvar();
+        ExcelController::salvar($_POST['nomeCandidato'], $_POST['inicioDaBusca'], $_POST['fimDaBusca'], $_POST['arquivo']);
         break;
 }
 ?>

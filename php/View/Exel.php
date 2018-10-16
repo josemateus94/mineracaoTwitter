@@ -25,7 +25,23 @@
                 <td>                    
                     <input type='text' name='inicioDaBusca' class='form form-control'>                    
                 </td>
-            </tr>                        
+            </tr>
+            <tr>
+                <td>Id do fim da pesquisa</td>
+                <td>                    
+                    <input type='text' name='fimDaBusca' class='form form-control'>                    
+                </td>
+            </tr>
+            <tr>
+                <td>Selecione o arquivo desejado</td>
+                <td>
+                    <input type='file' name='arquivo' class='form form-control'>
+                </td>
+            </tr>
+            <tr>                
+                <td></td>
+                <td></td>
+            </tr>                     
         </table>        
         <input class='hidden' type='text' name='tipo' id='tipo' value='exelMysal'>
         </br>
