@@ -14,14 +14,13 @@ require_once('../Message/MensagemAlerta.php');
         <div class="container">            
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="Ifeel.php">Prepara arquivo ifeel</a></li>
                     <li><a href="SalvaMysql.php">Ler o txt do python e salva no mysql</a></li>
+                    <li><a href="Ifeel.php">Prepara arquivo ifeel</a></li>                    
                     <li><a href="Exel.php">Ler o exel e salva no mysql</a></li>                    
                 </ul>
             </div>
         </div>
     </div>
-
     <div class="container">
     <div class="principal">
 <?php

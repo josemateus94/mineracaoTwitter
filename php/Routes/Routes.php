@@ -4,7 +4,7 @@ switch ($_POST['tipo']) {
     case 'salvarMysql':
         require_once("../Controller/SalvaMysqlController.php");
         $salvarMysql = new SalvarMysqlController($_POST['nomeCandidato']);
-        $salvarMysql->ler($_POST['arquivo']);
+        $salvarMysql->ler($_POST['arquivo'], $_POST['nomeCandidato']);
         break;
     case 'salvarifeel':
         require_once('../Controller/IfeelController.php');

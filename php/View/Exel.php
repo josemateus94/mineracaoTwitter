@@ -15,7 +15,7 @@
                         <option value='claudiney_dulim'>Claudiney Dulim</option>
                         <option value='dirlene_marques'>Dirlene Marques</option>
                         <option value='joao_batista_mares_guia'>João Batista Mares Guia</option>
-                        <option value='jordano_metalurgico'>Jordano Metalúrgico</option>                            
+                        <option value='jordano_metalurgico'>Jordano Metalúrgico</option>                        
                     </select>
                 </label>
                 </td>

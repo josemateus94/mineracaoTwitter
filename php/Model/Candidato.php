@@ -12,7 +12,7 @@ class Candidato{
         $this->pdo = $this->conexao->conectar();
     }
 
-    function inserePost($candidato, $nomeCandidato){
+    public function inserePost($candidato, $nomeCandidato){
 
         try {
             $pdt = $this->pdo->prepare("INSERT INTO $nomeCandidato (tw_id, nome, localizacao, aparelho ,tw_data, post)
@@ -34,6 +34,7 @@ class Candidato{
             echo "" . ($exc->getMessage());
         }     
     }
+
     public function buscar($nomeCandidato, $inicioDaBusca, $fimDaBusca=null){
         
         if (is_null($fimDaBusca)) {
@@ -51,7 +52,7 @@ class Candidato{
             echo "" . ($exc->getMessage());
         }
     }
-    //UPDATE `candidatos`.`adalclever_lopes` SET `sentimento`='asas' WHERE `id`='1';
+
     public function inserirSentimentos($idCandidato, $nomeCandidato, $sentimento){
         try{
             $pdt = $this->pdo->prepare("UPDATE $nomeCandidato SET sentimento = :sentimento

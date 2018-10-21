@@ -1,7 +1,7 @@
 <?php
 
 require_once('../Helper/RemoveEmoji.php');
-require_once('../Dao/Candidato.php');
+require_once('../Model/Candidato.php');
 session_start();
 
 class SalvarMysqlController{
@@ -47,13 +47,12 @@ class SalvarMysqlController{
             $_SESSION['danger'] = 'Erro ao salvar arquivo na tabela - '. $this->nomeCandidato.' arquvio - '. $arquivo;
             header("Location: ../View/SalvaMysql.php");
             die();   
-        }
-        
+        }        
     }
     
-    public function ler($arquivo){
+    public function ler($arquivo, $nomeCandidato){
         set_time_limit(0);
-        $caminho = "../../arquivos/1° Turno/".$arquivo;
+        $caminho = "../../arquivos/1° Turno/".$nomeCandidato.'/'.$arquivo;
         $teste = array();
         $fp = fopen($caminho, "r");
         $valor = null;

@@ -1,5 +1,5 @@
 <?php
-require_once('../Dao/Candidato.php');
+require_once('../Model/Candidato.php');
 session_start();
 class IfeelController{
 

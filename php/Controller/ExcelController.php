@@ -1,12 +1,12 @@
 <?php
 
-require_once('../Dao/Candidato.php');
+require_once('../Model/Candidato.php');
 
 session_start();
 
 class ExcelController{
-    // ler todos os post que tem no nome dos candidatos e salvar o id em um array, conforme o tamanho do txt.
-    // ler o txt com os sentimentos e salvar em um array.
+    // ler todos os post que tem no nome dos candidatos e salvar o id em um array, conforme o tamanho do txt - OK
+    // ler o txt com os sentimentos e salvar em um array. - OK    
     // percorrer o array com os sentimentos e salvar no banco.
     public static function salvar($nomeCandidato, $inicioDaBusca, $fimDaBusca, $arquivo){        
         $candidato = new Candidato;
@@ -16,8 +16,7 @@ class ExcelController{
             echo($value['id']);
             //$aux = $candidato->inserirSentimentos($nomeCandidato, $nomeCandidato, $fimDaBusca);// ESTA FUNCIONANDO OK OK
         }
-        die();
-        
+        die();        
     }
 
     private static function lerTxtIfeel($arquivo){// informa o nome do arquivo         
