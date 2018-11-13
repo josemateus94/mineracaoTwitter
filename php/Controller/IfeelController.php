@@ -22,10 +22,10 @@ class IfeelController{
             }else{
                 sleep(1);
                 $cont = 0;
-                fclose($fp); 
+                fclose($fp);
                 $fp = $this->criaTxt($nomeCandidato); 
-                echo'ok'.'<br>';  
-                $totalArqruivos++;      
+                fwrite($fp, ($value['post']."\n"));
+                $totalArqruivos++;
             } 
             $cont++;           
         }

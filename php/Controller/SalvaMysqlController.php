@@ -24,18 +24,28 @@ class SalvarMysqlController{
             if (isset($aux[3])) {
                 $aux[3] = RemoveEmoji::remove($aux[3]);
             }
-            
+
+            if (isset($aux[5])) {
+                $diaHora = explode(' ', (date('d-m-Y H:i:s', strtotime(explode(' +',$aux[5])[0]))));                
+            }else{
+                $diaHora = array(0 => '', 1 => '');
+            }
+
             $info = array(
                 'cont'         => isset($aux[0]) ? $aux[0] : '', 
                 'tw_id'        => isset($aux[1]) ? $aux[1] : '', 
                 'nome'         => isset($aux[2]) ? $aux[2] : '',            
                 'localizacao'  => isset($aux[3]) ? $aux[3] : '',
                 'aparelho'     => isset($aux[4]) ? $aux[4] : '',
-                'tw_data'      => isset($aux[5]) ? $aux[5] : '',
+                'dia'          => $diaHora[0],
+                'hora'         => $diaHora[1],
                 'post'         => isset($aux[6]) ? $aux[6] : '',
-            );                        
-            $retorno = $candidato->inserePost($info,$this->nomeCandidato);
-            array_push($salvou, $retorno);               
+            ); 
+
+            if (isset($aux[6])) {
+                $retorno = $candidato->inserirTwitter($info,$this->nomeCandidato);
+                array_push($salvou, $retorno);   
+            }            
             $info = array();
         }
 

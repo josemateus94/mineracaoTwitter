@@ -12,16 +12,17 @@ class Candidato{
         $this->pdo = $this->conexao->conectar();
     }
 
-    public function inserePost($candidato, $nomeCandidato){
-
+    public function inserirTwitter($candidato, $nomeCandidato){
+        
         try {
-            $pdt = $this->pdo->prepare("INSERT INTO $nomeCandidato (tw_id, nome, localizacao, aparelho ,tw_data, post)
-                                        VALUES (:tw_id, :nome, :localizacao, :aparelho , :tw_data, :post)");
+            $pdt = $this->pdo->prepare("INSERT INTO $nomeCandidato (tw_id, nome, localizacao, aparelho , dia, hora, post)
+                                        VALUES (:tw_id, :nome, :localizacao, :aparelho , :dia, :hora, :post)");
             $pdt->bindParam(":tw_id", $candidato['tw_id'], PDO::PARAM_STR);
             $pdt->bindParam(":nome",  $candidato['nome'], PDO::PARAM_STR);
             $pdt->bindParam(":localizacao",  $candidato['localizacao'], PDO::PARAM_STR);
             $pdt->bindParam(":aparelho",  $candidato['aparelho'], PDO::PARAM_STR);
-            $pdt->bindParam(":tw_data", $candidato['tw_data'], PDO::PARAM_STR);
+            $pdt->bindParam(":dia", $candidato['dia'], PDO::PARAM_STR);
+            $pdt->bindParam(":hora", $candidato['hora'], PDO::PARAM_STR);
             $pdt->bindParam(":post", $candidato['post'], PDO::PARAM_STR);
 
             if($pdt->execute()){
@@ -35,13 +36,14 @@ class Candidato{
         }     
     }
 
-    public function buscar($nomeCandidato, $inicioDaBusca, $fimDaBusca=null){
-        
-        if (is_null($fimDaBusca)) {
+    public function buscar($nomeCandidato, $inicioDaBusca=1, $fimDaBusca=null){
+
+        if (is_null($fimDaBusca) || $fimDaBusca == '') {
             $fimDaBusca = '';
         }else{
             $fimDaBusca = 'and id <='.$fimDaBusca;
         }
+        
         try{
             $pdt = $this->pdo->prepare("SELECT post, id FROM $nomeCandidato 
                                         WHERE id >= :inicioDaBusca and post like '%$nomeCandidato%' $fimDaBusca");
