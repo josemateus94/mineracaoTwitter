@@ -15,5 +15,9 @@ switch ($_POST['tipo']) {
         require_once('../Controller/ExcelController.php');
         ExcelController::salvar($_POST['nomeCandidato'], $_POST['inicioDaBusca'], $_POST['fimDaBusca'], $_POST['arquivo']);
         break;
+    case 'twitterPorUsuario':
+        require_once('../Controller/TwitterPorUsuarioController.php');
+        TwitterPorUsuarioController::comparar($_POST['nomeCandidato']);
+        break;
 }
 ?>

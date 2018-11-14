@@ -70,6 +70,38 @@ class Candidato{
             echo "" . ($exc->getMessage());
         }
     }
+
+    public function buscarUsuarioOrdenados($nomeCandidato){ 
+        var_dump($nomeCandidato);           
+        try {
+        $pdt = $this->pdo->prepare("SELECT id, tw_id, dia, hora, post FROM $nomeCandidato where post like '%$nomeCandidato%' order by tw_id, dia, hora");        
+        $pdt->execute();                                        
+        return $pdt->fetchAll();
+
+        } catch (\Throwable $th) {
+            echo "" . ($th->getMessage());
+        }
+    }
+    public function salvarTwitterPorUsuario($arrayEleitore){        
+        try {
+            $pdt = $this->pdo->prepare("INSERT INTO twitter_por_usuario (id_origem, origem, tw_id, dia, hora)
+                                        VALUES (:id_origem, :origem, :tw_id, :dia, :hora)");                   
+            $pdt->bindParam(":id_origem",  $arrayEleitore['idOrigim'], PDO::PARAM_STR);
+            $pdt->bindParam(":origem",  $arrayEleitore['origem'], PDO::PARAM_STR);
+            $pdt->bindParam(":tw_id", $arrayEleitore['tw_id'], PDO::PARAM_STR);            
+            $pdt->bindParam(":dia", $arrayEleitore['dia'], PDO::PARAM_STR);
+            $pdt->bindParam(":hora", $arrayEleitore['hora'], PDO::PARAM_STR);            
+
+            if($pdt->execute()){                
+                return true;    
+            } else{                
+                return false;
+            }       
+
+        } catch (\Throwable $th) {
+            echo "" . ($th->getMessage());
+        }  
+    }
 }
 
 ?>

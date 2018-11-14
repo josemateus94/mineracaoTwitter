@@ -16,7 +16,8 @@ require_once('../Message/MensagemAlerta.php');
                 <ul class="nav navbar-nav">
                     <li><a href="SalvaMysql.php">Ler o txt do python e salva no mysql</a></li>
                     <li><a href="Ifeel.php">Prepara arquivo ifeel</a></li>                    
-                    <li><a href="Exel.php">Ler o exel e salva no mysql</a></li>                    
+                    <li><a href="Exel.php">Ler o exel e salva no mysql</a></li>
+                    <li><a href="TwitterPorUsuario.php">Twitter por usuario</a></li>                    
                 </ul>
             </div>
         </div>
