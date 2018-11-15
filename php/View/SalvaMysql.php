@@ -8,9 +8,9 @@
                 <td>Nome candidado</td>
                 <td>
                     <select name='nomeCandidato'>
-                        <option value='anastasia'>anastasia</option>
+                        <option value='anastasia'>Anastasia</option>
                         <option value='romeu_zema'>Romeu Zema</option>
-                        <option value='pimentel'>pimentel</option>
+                        <option value='pimentel'>Pimentel</option>
                         <option value='adalclever_lopes'>Adalclever Lopes</option>
                         <option value='alexandre_flach'>Alexandre Flach</option>
                         <option value='claudiney_dulim'>Claudiney Dulim</option>

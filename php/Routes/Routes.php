@@ -1,5 +1,4 @@
 <?php
-
 switch ($_POST['tipo']) {
     case 'salvarMysql':
         require_once("../Controller/SalvaMysqlController.php");
@@ -18,6 +17,18 @@ switch ($_POST['tipo']) {
     case 'twitterPorUsuario':
         require_once('../Controller/TwitterPorUsuarioController.php');
         TwitterPorUsuarioController::comparar($_POST['nomeCandidato']);
+        break;
+    case 'mediaTwitterPorUsuario':
+        require_once('../Controller/TwitterPorUsuarioController.php');
+        TwitterPorUsuarioController::mediaTwitterPorUsuario();
+        break;
+    case 'TotalIdsDiferente':
+        require_once('../Controller/TwitterPorUsuarioController.php');
+        TwitterPorUsuarioController::TotalIdsDiferente();
+        break;
+    case 'CorrigirHoras':
+        require_once('../Controller/TwitterPorUsuarioController.php');
+        TwitterPorUsuarioController::CorrigirHoras($_POST['nomeCandidato']);
         break;
 }
 ?>

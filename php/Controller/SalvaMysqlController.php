@@ -48,8 +48,7 @@ class SalvarMysqlController{
             }            
             $info = array();
         }
-
-        if (!array_search(false, $salvou)) {
+        if (!in_array(false, $salvou)) {
             $_SESSION['success'] = 'Arquivo salvo com sucesso na tabela - '. $this->nomeCandidato.' arquvio - '. $arquivo;
             header("Location: ../View/SalvaMysql.php");
             die();   
@@ -63,7 +62,11 @@ class SalvarMysqlController{
     public function ler($arquivo, $nomeCandidato){
         set_time_limit(0);
         $caminho = "../../arquivos/1° Turno/".$nomeCandidato.'/'.$arquivo;
-        $teste = array();
+        if (!is_file($caminho)) {
+            $_SESSION['danger'] = 'Erro ao salvar arquivo na tabela - '. $this->nomeCandidato.' arquvio - '. $arquivo;
+            header("Location: ../View/SalvaMysql.php");
+            die();
+        }
         $fp = fopen($caminho, "r");
         $valor = null;
         while (!feof ($fp)) {            

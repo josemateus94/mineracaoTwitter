@@ -71,8 +71,7 @@ class Candidato{
         }
     }
 
-    public function buscarUsuarioOrdenados($nomeCandidato){ 
-        var_dump($nomeCandidato);           
+    public function buscarUsuarioOrdenados($nomeCandidato){                    
         try {
         $pdt = $this->pdo->prepare("SELECT id, tw_id, dia, hora, post FROM $nomeCandidato where post like '%$nomeCandidato%' order by tw_id, dia, hora");        
         $pdt->execute();                                        
@@ -82,6 +81,7 @@ class Candidato{
             echo "" . ($th->getMessage());
         }
     }
+
     public function salvarTwitterPorUsuario($arrayEleitore){        
         try {
             $pdt = $this->pdo->prepare("INSERT INTO twitter_por_usuario (id_origem, origem, tw_id, dia, hora)
@@ -102,6 +102,32 @@ class Candidato{
             echo "" . ($th->getMessage());
         }  
     }
+
+    public function twitterPorUsuario(){        
+        try{
+            $pdt = $this->pdo->prepare("SELECT tw_id, count(tw_id) as total FROM twitter_por_usuario group by tw_id order by total desc ");            
+            $pdt->execute();                                        
+            return $pdt->fetchAll();            
+        }catch(PDOException $exc){
+            echo "" . ($exc->getMessage());
+        }        
+    }   
+    public function corrgirHoras($nomeCandidato, $id, $hora){
+        try {
+            $pdt = $this->pdo->prepare("UPDATE $nomeCandidato SET hora = :hora where id = :id;");                   
+            $pdt->bindParam(":hora",  $hora, PDO::PARAM_STR);
+            $pdt->bindParam(":id",  $id, PDO::PARAM_STR);            
+
+            if($pdt->execute()){                
+                return true;    
+            } else{                
+                return false;
+            }       
+
+        } catch (\Throwable $th) {
+            echo "" . ($th->getMessage());
+        } 
+    }     
 }
 
 ?>
