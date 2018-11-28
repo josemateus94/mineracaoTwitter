@@ -81,5 +81,23 @@ class twitterPorUsuarioController {
             die();
         }
     }
+
+    public static function MediaPorPeriodo($nomeCandidato){
+        $candidato = new Candidato();
+        $eleitores = $candidato->buscarUsuarioOrdenados($nomeCandidato);
+        $diaInicio = '2018-08-31';
+        $diaFinal = '2018-09-14'; 
+        $cont = 0;               
+        foreach ($eleitores as $key => $eleitore) { 
+            //echo('dia - '.$eleitore['dia'].' tw_id - '.strtotime($eleitore['dia']). ' Inicio - '.strtotime($diaInicio). ' Final - '. strtotime($diaFinal). '<br>');
+            $eleitore['dia'] = date('Y/m/d', strtotime($eleitore['dia']));                         
+            if (strtotime($eleitore['dia']) >= strtotime($diaInicio) && strtotime($eleitore['dia']) <= strtotime($diaFinal)) {                
+                $cont++;
+            }             
+        }                
+        $_SESSION['success'] = $nomeCandidato . ' Periodo - '. $cont;
+        header("Location: ../View/TwitterPorUsuario.php");
+        die();
+    }
 }
 ?>

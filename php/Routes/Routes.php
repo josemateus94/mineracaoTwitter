@@ -30,5 +30,9 @@ switch ($_POST['tipo']) {
         require_once('../Controller/TwitterPorUsuarioController.php');
         TwitterPorUsuarioController::CorrigirHoras($_POST['nomeCandidato']);
         break;
+    case 'MediaPorPeriodo':
+        require_once('../Controller/TwitterPorUsuarioController.php');
+        TwitterPorUsuarioController::MediaPorPeriodo($_POST['nomeCandidato']);
+        break;
 }
 ?>
